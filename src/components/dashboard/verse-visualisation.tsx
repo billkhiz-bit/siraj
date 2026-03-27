@@ -211,7 +211,7 @@ export function VerseVisualisation({
         </Canvas>
 
         {hoveredVerse && (
-          <div className="pointer-events-none absolute left-6 bottom-6 max-h-[50%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
+          <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[50%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
             <p className="text-xs text-muted-foreground">
               Ayah {hoveredVerse.verse_number} · {hoveredVerse.wordCount} words · Juz {hoveredVerse.juz_number} · Page {hoveredVerse.page_number}
             </p>

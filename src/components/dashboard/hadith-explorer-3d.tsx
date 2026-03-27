@@ -264,7 +264,7 @@ export function HadithExplorer3D() {
           </Canvas>
 
           {displayCollection && !selectedCollection && (
-            <div className="pointer-events-none absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
+            <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
               <p className="font-mono text-xl font-bold text-foreground">
                 {displayCollection.nameArabic}
               </p>

@@ -160,12 +160,6 @@ export function LandingPage() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.1; }
-          50% { opacity: 0.6; }
-        }
-      `}</style>
     </div>
   );
 }
