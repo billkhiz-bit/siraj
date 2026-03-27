@@ -182,7 +182,7 @@ function Scene({
 export function HadithExplorer3D() {
   const [selectedCollection, setSelectedCollection] = useState<HadithCollection | null>(null);
   const [hoveredCollection, setHoveredCollection] = useState<HadithCollection | null>(null);
-  const tooltipLocked = useRef(false);
+  
   const [sampleHadiths, setSampleHadiths] = useState<SampleHadith[]>([]);
   const [loadingHadiths, setLoadingHadiths] = useState(false);
   const displayCollection = hoveredCollection || selectedCollection;
@@ -259,7 +259,7 @@ export function HadithExplorer3D() {
             <Scene
               selectedCollection={selectedCollection}
               hoveredCollection={hoveredCollection}
-              onHover={(c) => { if (!tooltipLocked.current) setHoveredCollection(c); }}
+              onHover={(c) => { setHoveredCollection(c); }}
               onSelect={handleSelect}
             />
           </Canvas>
@@ -267,8 +267,8 @@ export function HadithExplorer3D() {
           {displayCollection && !selectedCollection && (
             <div
               className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
-              onMouseEnter={() => { tooltipLocked.current = true; }}
-              onMouseLeave={() => { tooltipLocked.current = false; setHoveredCollection(null); }}
+              
+              
             >
               <p className="font-mono text-xl font-bold text-foreground">
                 {displayCollection.nameArabic}

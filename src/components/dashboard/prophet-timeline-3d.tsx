@@ -198,7 +198,7 @@ function Scene({
 
 export function ProphetTimeline3D() {
   const [hoveredProphet, setHoveredProphet] = useState<Prophet | null>(null);
-  const tooltipLocked = useRef(false);
+  
   const [selectedProphet, setSelectedProphet] = useState<Prophet | null>(null);
 
   const displayProphet = selectedProphet || hoveredProphet;
@@ -231,7 +231,7 @@ export function ProphetTimeline3D() {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
             }}
           >
-            <Scene hoveredProphet={displayProphet} onHover={(p) => { if (!tooltipLocked.current) setHoveredProphet(p); }} />
+            <Scene hoveredProphet={displayProphet} onHover={(p) => { setHoveredProphet(p); }} />
           </Canvas>
 
           {/* Click handler for 3D nodes */}
@@ -244,8 +244,8 @@ export function ProphetTimeline3D() {
           {hoveredProphet && !selectedProphet && (
             <div
               className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
-              onMouseEnter={() => { tooltipLocked.current = true; }}
-              onMouseLeave={() => { tooltipLocked.current = false; setHoveredProphet(null); }}
+              
+              
             >
               <p className="font-mono text-xl font-bold text-foreground">
                 {hoveredProphet.nameArabic}

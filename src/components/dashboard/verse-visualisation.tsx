@@ -18,6 +18,7 @@ function VerseBar({
   maxWords,
   isHovered,
   onHover,
+  onClick,
 }: {
   verse: Verse & { wordCount: number };
   index: number;
@@ -25,6 +26,7 @@ function VerseBar({
   maxWords: number;
   isHovered: boolean;
   onHover: (v: (Verse & { wordCount: number }) | null) => void;
+  onClick: (v: (Verse & { wordCount: number })) => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const height = (verse.wordCount / maxWords) * 8;
@@ -70,6 +72,10 @@ function VerseBar({
           onHover(verse);
           document.body.style.cursor = "pointer";
         }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(verse);
+        }}
         onPointerOut={() => {
           onHover(null);
           document.body.style.cursor = "auto";
@@ -106,10 +112,12 @@ function Scene({
   verses,
   hoveredVerse,
   onHover,
+  onClick,
 }: {
   verses: (Verse & { wordCount: number })[];
   hoveredVerse: (Verse & { wordCount: number }) | null;
   onHover: (v: (Verse & { wordCount: number }) | null) => void;
+  onClick: (v: (Verse & { wordCount: number })) => void;
 }) {
   const maxWords = Math.max(...verses.map((v) => v.wordCount), 1);
 
@@ -131,6 +139,7 @@ function Scene({
           maxWords={maxWords}
           isHovered={hoveredVerse?.verse_key === verse.verse_key}
           onHover={onHover}
+          onClick={onClick}
         />
       ))}
 
@@ -160,7 +169,8 @@ export function VerseVisualisation({
   surah: Surah;
 }) {
   const [hoveredVerse, setHoveredVerse] = useState<(Verse & { wordCount: number }) | null>(null);
-  const tooltipLocked = useRef(false);
+  const [pinnedVerse, setPinnedVerse] = useState<(Verse & { wordCount: number }) | null>(null);
+  const displayVerse = pinnedVerse || hoveredVerse;
 
   const enrichedVerses = useMemo(
     () =>
@@ -207,26 +217,36 @@ export function VerseVisualisation({
           <Scene
             verses={enrichedVerses}
             hoveredVerse={hoveredVerse}
-            onHover={(v) => { if (!tooltipLocked.current) setHoveredVerse(v); }}
+            onHover={setHoveredVerse}
+            onClick={setPinnedVerse}
           />
         </Canvas>
 
-        {hoveredVerse && (
-          <div
-            className="pointer-events-auto absolute left-6 bottom-6 max-h-[50%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
-            onMouseEnter={() => { tooltipLocked.current = true; }}
-            onMouseLeave={() => { tooltipLocked.current = false; setHoveredVerse(null); }}
-          >
-            <p className="text-xs text-muted-foreground">
-              Ayah {hoveredVerse.verse_number} · {hoveredVerse.wordCount} words · Juz {hoveredVerse.juz_number} · Page {hoveredVerse.page_number}
-            </p>
-            <p className="mt-2 text-right font-mono text-lg leading-loose text-foreground" dir="rtl">
-              {hoveredVerse.text_uthmani}
-            </p>
-            {hoveredVerse.translation && (
-              <p className="mt-1 text-sm text-foreground/80">
-                {hoveredVerse.translation}
+        {displayVerse && (
+          <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[55%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/95 px-5 py-4 shadow-xl backdrop-blur-sm">
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-xs text-muted-foreground">
+                Ayah {displayVerse.verse_number} · {displayVerse.wordCount} words · Juz {displayVerse.juz_number} · Page {displayVerse.page_number}
               </p>
+              {pinnedVerse && (
+                <button
+                  onClick={() => setPinnedVerse(null)}
+                  className="shrink-0 text-[10px] text-muted-foreground hover:text-foreground"
+                >
+                  Unpin
+                </button>
+              )}
+            </div>
+            <p className="mt-2 text-right font-mono text-lg leading-loose text-foreground" dir="rtl">
+              {displayVerse.text_uthmani}
+            </p>
+            {displayVerse.translation && (
+              <p className="mt-1 text-sm text-foreground/80">
+                {displayVerse.translation}
+              </p>
+            )}
+            {!pinnedVerse && (
+              <p className="mt-2 text-[10px] text-amber-500/70">Click a bar to pin</p>
             )}
           </div>
         )}
