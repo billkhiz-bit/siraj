@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Siraj (سراج) - The Lamp
 
-## Getting Started
+**Interactive 3D Qur'an & Hadith Data Visualisation Dashboard**
 
-First, run the development server:
+> "We sent you as a shining lamp" (Qur'an 33:46)
+
+**Live**: [siraj-ept.pages.dev](https://siraj-ept.pages.dev)
+
+Built for [Ramadan Hacks 2026](https://www.ummah.build/hackathon) by [Ummah Build](https://www.ummah.build).
+
+## What is Siraj?
+
+Siraj illuminates the structure, patterns, and geography of the Qur'an and Hadith through interactive 3D data visualisation. Most Islamic apps focus on reading and listening. Siraj lets you *see* the data.
+
+## Views
+
+| View | Description |
+|------|-------------|
+| **Surah Structure** | 114 surahs as glowing 3D cylinders in a ring. Height = ayat count. Cyan = Meccan, violet = Medinan. Sort by canonical, revelation, or length order. |
+| **Surah Detail** | Click any surah for Arabic text, English translation (Sahih International), transliteration, and a 3D verse structure chart. Click-to-pin any ayah. |
+| **Word Frequency** | Key Qur'anic terms as a 3D floating word cloud. Click any word to search for ayahs containing it via the Qur'an.com API. |
+| **Isnad Network** | Hadith narrator chains from the Prophet to the Tabi' al-Tabi'in. Click any node for their biography, titles, and key events. |
+| **Prophet Timeline** | 25 prophets in the Qur'an arranged chronologically. Click for their story and surah references. |
+| **Hadith Explorer** | 6 canonical collections compared as 3D towers. Click for topic breakdown and sample hadiths. |
+| **Revelation Map** | Real map showing Makkah (86 Meccan surahs) and Madinah (28 Medinan surahs) with toggleable layers. Click any surah dot to explore. |
+| **Islamic Journeys** | 10 historical routes from 615-632 CE with waypoints, key figures, and biographies. View all routes simultaneously or individually. |
+| **Names of Allah** | 99 Names arranged in a 3D sphere with Allah at the centre. Filter by Jamal (Beauty), Jalal (Majesty), or Kamal (Perfection). |
+
+## Data Accuracy
+
+All data is sourced from authoritative references:
+
+- **Surah metadata**: Qur'an.com API v4 (Egyptian Standard / Al-Azhar)
+- **Verse text**: Uthmani script via Qur'an.com API
+- **Translation**: Sahih International via Qur'an.com API
+- **Transliteration**: Word-by-word via Qur'an.com API
+- **Hadith**: fawazahmed0/hadith-api (6 canonical collections)
+- **99 Names**: Sahih al-Bukhari 2736, Sahih Muslim 2677
+- **Journeys**: Ibn Hisham's Sirah, al-Tabari, Martin Lings
+
+## Tech Stack
+
+- **Next.js 16** (App Router, static export)
+- **Three.js** via React Three Fiber + Drei + Post-processing
+- **MapLibre GL** + react-map-gl (CARTO Dark Matter no-labels tiles)
+- **shadcn/ui** + Tailwind CSS v4 + Geist fonts
+- **Cloudflare Pages** (free tier)
+
+## Running Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Keyboard Shortcuts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Key | Action |
+|-----|--------|
+| **Ctrl+K** | Global search |
+| **Left/Right** | Navigate surahs |
+| **Up/Down** | Zoom in/out |
+| **Enter** | Explore selected surah |
+| **Escape** | Deselect |
 
-## Learn More
+## Licence
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All rights reserved.
