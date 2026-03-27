@@ -151,7 +151,7 @@ export default async function SurahDetailPage({
           <div className="mt-8 border-t border-border pt-4">
             <p className="text-xs text-muted-foreground/60">
               Arabic text: Uthmani script via Qur&apos;an.com API v4.
-              Translation: Dr. Mustafa Khattab, The Clear Quran.
+              Translation: Sahih International.
               Revelation order: Egyptian Standard (Al-Azhar).
             </p>
           </div>

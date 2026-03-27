@@ -92,11 +92,11 @@ Record your screen with the app open. Speak naturally as if you're showing a fri
 
 ## [2:30 - 2:50] Tech and extras
 
-"Quick technical notes. This is built with Next.js and Three.js for the 3D. The maps use MapLibre. All the Qur'anic data is verified against the Qur'an.com API. There's a global search with Ctrl+K that searches across everything, and keyboard navigation with arrow keys."
+"Quick note on accuracy, because this is the Qur'an and it has to be right. All the surah data, verse text, and translations come from the Qur'an.com API, which uses the Uthmani script and the Sahih International translation. The revelation order follows the Egyptian Standard from Al-Azhar, which is what's printed in virtually every mushaf in the world. The hadith data comes from an open hadith API covering all six canonical collections. And the word search actually queries the Qur'an.com search API live so the ayah results are real."
 
 *[Show Ctrl+K search, type "Rahman"]*
 
-"It's hosted for free on Cloudflare Pages and the code is open source on GitHub."
+"There's also a global search with Ctrl+K, keyboard navigation with arrow keys, and it's all built with Next.js, Three.js, and MapLibre. Hosted for free on Cloudflare Pages and the code is open source on GitHub."
 
 ---
 

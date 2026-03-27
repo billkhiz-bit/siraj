@@ -30,7 +30,7 @@ export async function fetchVerses(
   // Two parallel requests: one for translations, one for transliteration (words)
   const [transRes, wordsRes] = await Promise.all([
     fetch(
-      `${BASE_URL}/verses/by_chapter/${chapterId}?language=en&translations=131&fields=text_uthmani,verse_key&per_page=${perPage}&page=${page}`,
+      `${BASE_URL}/verses/by_chapter/${chapterId}?language=en&translations=20&fields=text_uthmani,verse_key&per_page=${perPage}&page=${page}`,
       { cache: "force-cache" }
     ),
     fetch(
