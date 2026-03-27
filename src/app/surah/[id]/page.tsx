@@ -130,14 +130,14 @@ export default async function SurahDetailPage({
                       >
                         {verse.text_uthmani}
                       </p>
-                      {verse.transliteration && (
-                        <p className="font-mono text-sm italic leading-relaxed text-foreground/70">
-                          {verse.transliteration}
+                      {verse.translation && (
+                        <p className="text-sm leading-relaxed text-foreground/80">
+                          {verse.translation}
                         </p>
                       )}
-                      {verse.translation && (
-                        <p className="text-sm leading-relaxed text-muted-foreground">
-                          {verse.translation}
+                      {verse.transliteration && (
+                        <p className="font-mono text-xs italic leading-relaxed text-muted-foreground/60">
+                          {verse.transliteration}
                         </p>
                       )}
                     </div>

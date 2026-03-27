@@ -218,13 +218,8 @@ export function VerseVisualisation({
             <p className="mt-2 text-right font-mono text-lg leading-loose text-foreground" dir="rtl">
               {hoveredVerse.text_uthmani}
             </p>
-            {hoveredVerse.transliteration && (
-              <p className="mt-1 font-mono text-xs italic text-foreground/70">
-                {hoveredVerse.transliteration}
-              </p>
-            )}
             {hoveredVerse.translation && (
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1 text-sm text-foreground/80">
                 {hoveredVerse.translation}
               </p>
             )}
