@@ -134,9 +134,10 @@ function SurahDot({
   const size = 6 + (surah.ayatCount / 286) * 14;
   return (
     <Marker latitude={lat} longitude={lon} anchor="center">
-      <div
+      <a
+        href={`/surah/${surah.number}`}
         className="cursor-pointer transition-transform duration-150"
-        style={{ transform: isHovered ? "scale(2.5)" : "scale(1)" }}
+        style={{ transform: isHovered ? "scale(2.5)" : "scale(1)", display: "block" }}
         onMouseEnter={() => onHover(surah)}
         onMouseLeave={() => onHover(null)}
       >
@@ -152,7 +153,7 @@ function SurahDot({
             opacity: isHovered ? 1 : 0.8,
           }}
         />
-      </div>
+      </a>
     </Marker>
   );
 }
@@ -503,6 +504,9 @@ export function RevelationMap() {
           <p className="font-mono text-[10px] text-muted-foreground">
             &ldquo;{hoveredSurah.meaning}&rdquo; · {hoveredSurah.ayatCount} ayat ·
             Revealed #{hoveredSurah.revelationOrder}
+          </p>
+          <p className="mt-1 font-mono text-[10px] text-amber-500/70">
+            Click to explore this surah
           </p>
         </div>
       )}

@@ -212,12 +212,12 @@ function CentreText() {
   return (
     <group ref={groupRef} position={[0, 0.5, 0]}>
       <Billboard follow lockX={false} lockY={false} lockZ={false}>
-        <Text fontSize={1.6} color="#f59e0b" anchorX="center" anchorY="middle">
+        <Text fontSize={1.2} color="#f59e0b" anchorX="center" anchorY="middle" letterSpacing={0.15}>
           SIRAJ
         </Text>
         <Text
-          position={[0, -1.2, 0]}
-          fontSize={0.35}
+          position={[0, -1, 0]}
+          fontSize={0.3}
           color="#64748b"
           anchorX="center"
           anchorY="middle"
