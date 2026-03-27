@@ -205,7 +205,10 @@ export function VerseVisualisation({
       </div>
 
       {/* 3D Canvas */}
-      <div className="relative h-[420px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a]">
+      <div
+        className="relative h-[420px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a]"
+        onClick={() => setPinnedVerse(null)}
+      >
         <Canvas
           camera={{ position: [0, 8, 16], fov: 55 }}
           gl={{ antialias: true, alpha: false }}
@@ -223,7 +226,10 @@ export function VerseVisualisation({
         </Canvas>
 
         {displayVerse && (
-          <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[55%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/95 px-5 py-4 shadow-xl backdrop-blur-sm">
+          <div
+            className="pointer-events-auto absolute left-6 bottom-6 max-h-[55%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/95 px-5 py-4 shadow-xl backdrop-blur-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-start justify-between gap-3">
               <p className="text-xs text-muted-foreground">
                 Ayah {displayVerse.verse_number} · {displayVerse.wordCount} words · Juz {displayVerse.juz_number} · Page {displayVerse.page_number}
