@@ -22,11 +22,13 @@ function ProphetNode({
   position,
   isHovered,
   onHover,
+  onClick,
 }: {
   prophet: Prophet;
   position: THREE.Vector3;
   isHovered: boolean;
   onHover: (p: Prophet | null) => void;
+  onClick: (p: Prophet) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const colour = prophet.isUlulAzm ? ULU_AL_AZM_COLOUR : REGULAR_COLOUR;
@@ -57,6 +59,10 @@ function ProphetNode({
         onPointerOut={() => {
           onHover(null);
           document.body.style.cursor = "auto";
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(prophet);
         }}
       >
         <sphereGeometry args={[baseSize, 24, 24]} />
@@ -152,9 +158,11 @@ function TimelineAxis() {
 function Scene({
   hoveredProphet,
   onHover,
+  onClick,
 }: {
   hoveredProphet: Prophet | null;
   onHover: (p: Prophet | null) => void;
+  onClick: (p: Prophet) => void;
 }) {
   const positions = prophets.map((p) => getProphetPosition(p));
 
@@ -175,6 +183,7 @@ function Scene({
           position={positions[i]}
           isHovered={hoveredProphet?.id === prophet.id}
           onHover={onHover}
+          onClick={onClick}
         />
       ))}
 
@@ -231,15 +240,8 @@ export function ProphetTimeline3D() {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
             }}
           >
-            <Scene hoveredProphet={displayProphet} onHover={(p) => { setHoveredProphet(p); }} />
+            <Scene hoveredProphet={displayProphet} onHover={setHoveredProphet} onClick={setSelectedProphet} />
           </Canvas>
-
-          {/* Click handler for 3D nodes */}
-          <div
-            className="absolute inset-0"
-            style={{ pointerEvents: hoveredProphet ? "auto" : "none", cursor: hoveredProphet ? "pointer" : "auto" }}
-            onClick={() => { if (hoveredProphet) setSelectedProphet(hoveredProphet); }}
-          />
 
           {hoveredProphet && !selectedProphet && (
             <div
