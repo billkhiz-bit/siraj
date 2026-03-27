@@ -278,7 +278,7 @@ export function IsnadNetwork3D() {
           {/* Hover tooltip (only when no narrator is selected) */}
           {hoveredNarrator && !selectedNarrator && (
             <div
-              className="pointer-events-none absolute left-6 bottom-6 cursor-pointer rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
+              className="pointer-events-none absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto cursor-pointer rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
             >
               <p className="font-mono text-xl font-bold text-foreground">
                 {hoveredNarrator.nameArabic}

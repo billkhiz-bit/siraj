@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 // Seeded pseudo-random for deterministic star positions
@@ -9,20 +9,19 @@ function seededRandom(seed: number) {
   return x - Math.floor(x);
 }
 
+// Pre-computed star data to avoid hydration mismatch
+const STAR_DATA = Array.from({ length: 120 }, (_, i) => ({
+  width: seededRandom(i * 7 + 1) * 2 + 1,
+  height: seededRandom(i * 7 + 2) * 2 + 1,
+  left: seededRandom(i * 7 + 3) * 100,
+  top: seededRandom(i * 7 + 4) * 100,
+  opacity: seededRandom(i * 7 + 5) * 0.5 + 0.1,
+  duration: 2 + seededRandom(i * 7 + 6) * 3,
+  delay: seededRandom(i * 7 + 7) * 3,
+}));
+
 function Stars() {
-  const stars = useMemo(
-    () =>
-      Array.from({ length: 120 }, (_, i) => ({
-        width: seededRandom(i * 7 + 1) * 2 + 1,
-        height: seededRandom(i * 7 + 2) * 2 + 1,
-        left: seededRandom(i * 7 + 3) * 100,
-        top: seededRandom(i * 7 + 4) * 100,
-        opacity: seededRandom(i * 7 + 5) * 0.5 + 0.1,
-        duration: 2 + seededRandom(i * 7 + 6) * 3,
-        delay: seededRandom(i * 7 + 7) * 3,
-      })),
-    []
-  );
+  const stars = STAR_DATA;
 
   return (
     <div className="absolute inset-0">
