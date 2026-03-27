@@ -173,8 +173,10 @@ export function WordCloud3D() {
     setSelectedWord(word);
     setSearching(true);
     try {
+      // Search using Arabic text for accuracy, fall back to transliteration
+      const arabicClean = word.arabic.replace(/[\u064B-\u065F\u0670]/g, ""); // strip tashkeel
       const res = await fetch(
-        `https://api.quran.com/api/v4/search?q=${encodeURIComponent(word.transliteration)}&size=10&page=1&language=en&translations=131`
+        `https://api.quran.com/api/v4/search?q=${encodeURIComponent(arabicClean)}&size=10&page=1&language=en&translations=131`
       );
       const data = await res.json();
       const results: SearchResult[] = (data.search?.results || []).map(

@@ -1,79 +1,109 @@
-# Siraj — Video Demo Script (3 minutes)
+# Siraj - Video Demo Script (Conversational, ~3 minutes)
 
-## [0:00 – 0:15] HOOK
-
-*[Screen: Dark background. Bismillah fades in, in Arabic calligraphy.]*
-
-"Bismillahir Rahmanir Raheem. The Qur'an contains 6,236 verses, 114 surahs, revealed over 23 years across two cities. But what does that look like? What if you could see it — in three dimensions?"
-
-*[Click — SIRAJ title appears with amber glow]*
+Record your screen with the app open. Speak naturally as if you're showing a friend.
 
 ---
 
-## [0:15 – 0:40] THE PROBLEM
+## [0:00 - 0:10] Opening
 
-"Most Qur'anic apps focus on reading and listening. But the Qur'an also has structure — mathematical, historical, and geographical patterns that are invisible in a flat text view. How do Meccan and Medinan surahs differ? How do hadith chains connect? Where did the early Muslims travel? These are data questions — and data deserves to be visualised."
+*[Screen: Landing page, dark background, Bismillah appears]*
 
----
+"Assalamu Alaikum everyone! So I built something I'm really excited about. It's called Siraj, which means 'The Lamp' in Arabic, from Surah Al-Ahzab."
 
-## [0:40 – 1:10] SURAH STRUCTURE
-
-*[Screen: 3D ring of 114 cylinders, auto-rotating]*
-
-"This is Siraj — a 3D data dashboard for the Qur'an and Hadith. Each glowing bar is a surah. Height represents ayat count — Al-Baqarah towers over everything with 286 verses. Cyan is Meccan, violet is Medinan."
-
-*[Switch to Revelation order]*
-
-"Switch to revelation order and watch the pattern shift — the short, poetic Meccan surahs cluster first, then the longer Medinan surahs appear."
-
-*[Click Al-Baqarah — surah detail loads]*
-
-"Click any surah to dive in — every verse fetched from the Qur'an.com API, with Arabic text, English translation, and a 3D breakdown of verse length."
+*[Click to enter dashboard]*
 
 ---
 
-## [1:10 – 1:40] MORE VIEWS
+## [0:10 - 0:35] What it does
 
-*[Quick montage: Word Frequency → Isnad Network → Prophet Timeline → Hadith Explorer]*
+"So the idea is simple. The Qur'an has incredible structure and patterns, but when you're reading it on an app, you can't really see that. Like, did you know that Meccan surahs are generally shorter and more poetic, while Medinan surahs are longer and deal with law and society? You can't see that in a text reader. But you can see it here."
 
-"A 3D word cloud of the Qur'an's most mentioned terms — Allah appears 2,699 times. A network graph showing how hadith were transmitted from the Prophet, peace be upon him, through the Companions to the scholars who compiled them. A timeline of 25 prophets, sized by how often the Qur'an mentions them — Musa leads with 136 mentions. And the six canonical hadith collections compared side by side."
+*[Show the 3D ring rotating]*
 
----
-
-## [1:40 – 2:10] MAPS
-
-*[Screen: Revelation Map with glowing dots over Makkah and Madinah]*
-
-"The Revelation Map shows where each surah was revealed — 86 in Makkah, 28 in Madinah — on a real map with toggleable layers."
-
-*[Switch to Journeys → All Journeys view]*
-
-"And the Islamic Journeys view traces 10 defining routes — from the first migration to Abyssinia in 615 CE to the Farewell Pilgrimage in 632 CE. Each journey shows the route, the waypoints, and the key figures who shaped early Islamic history."
-
-*[Click on the Hijrah — zoom in]*
-
-"The Hijrah route even includes the Cave of Thawr where the Prophet and Abu Bakr hid for three days."
+"Each one of these glowing bars is a surah. The height is how many ayat it has. Cyan is Meccan, violet is Medinan. And that tall one right there? That's Al-Baqarah, 286 ayat."
 
 ---
 
-## [2:10 – 2:30] NAMES OF ALLAH
+## [0:35 - 1:00] Sorting and clicking
 
-*[Screen: 99 glowing Arabic names floating in a sphere]*
+*[Click Revelation tab]*
 
-"And the 99 Names of Allah — Asma al-Husna — arranged in a 3D sphere. Colour-coded by category: beauty, majesty, and perfection. Hover any name for its meaning."
+"You can sort them three ways. Canonical is the order in the mushaf. Revelation is the chronological order they were revealed, which starts with Al-'Alaq, not Al-Fatihah. And By Length just shows you the longest to shortest."
+
+*[Click on a surah bar]*
+
+"If I click on any surah, it takes me to a detail page with every single ayah. Arabic text, English transliteration, and translation. All pulled from the Qur'an.com API so the data is verified."
+
+*[Hover over a verse bar in the 3D chart]*
+
+"And this 3D chart shows each ayah as a bar where the height is the word count."
 
 ---
 
-## [2:30 – 2:50] TECHNICAL NOTES
+## [1:00 - 1:25] Word Frequency and Names
 
-"Built with Next.js, Three.js, and MapLibre. Data verified against the Qur'an.com API. Hosted free on Cloudflare Pages. Global search with Ctrl+K, keyboard navigation with arrow keys, and a cinematic landing page."
+*[Navigate to Word Frequency]*
+
+"This is probably one of my favourites. Every floating word here is a key Qur'anic term in Arabic. The bigger the word, the more it appears. 'Allah' appears 2,699 times. You can filter by category and if you click on any word, it actually searches the Qur'an and shows you the ayahs that contain it."
+
+*[Click a word, show results panel]*
+
+*[Navigate to Names of Allah]*
+
+"And this is the 99 Names of Allah arranged in a 3D sphere. 'Allah' is right there in the centre. You can filter by Jamal, which are names of beauty like Ar-Rahman, Jalal which are names of majesty like Al-Jabbar, and Kamal which are names of perfection like Al-Hakeem."
 
 ---
 
-## [2:50 – 3:00] CLOSE
+## [1:25 - 1:55] Isnad and Prophets
 
-*[Screen: Landing page, SIRAJ glowing]*
+*[Navigate to Isnad Network]*
 
-"Siraj means 'lamp' in Arabic — from Surah Al-Ahzab: 'We sent you as a shining lamp.' This project aims to illuminate the data within the Qur'an and Hadith. Jazakum Allahu Khairan."
+"This one is really interesting. So in Islam, every hadith has a chain of narration called an isnad. This graph shows who narrated to who, from the Prophet, peace be upon him, down to the Companions, the Tabi'in, and beyond."
 
-*[Fade to URL: siraj-ept.pages.dev]*
+*[Click on Abu Hurairah node]*
+
+"If I click Abu Hurairah, he narrated 5,374 hadith, the most of any companion. You can read his full biography right here. Same for Khadijah, Bilal, Khalid ibn al-Walid, everyone."
+
+*[Navigate to Prophet Timeline]*
+
+"The Prophet Timeline shows all 25 prophets mentioned in the Qur'an. The golden rings are the five Ulu al-Azm, the resolute messengers. Musa is mentioned 136 times, the most of any prophet. Click any of them for their story."
+
+---
+
+## [1:55 - 2:30] Maps and Journeys
+
+*[Navigate to Revelation Map]*
+
+"I'm really proud of this one. It's a real map showing exactly where the Qur'an was revealed. The cyan dots around Makkah are the 86 Meccan surahs. The violet dots around Madinah are the 28 Medinan ones. You can toggle the layers on and off and zoom right in."
+
+*[Navigate to Islamic Journeys, show All Journeys view]*
+
+"And the Journeys page is probably the most educational. There are 10 historical routes here. The green ones are the two migrations to Abyssinia, when Muslims fled to the court of the Najashi. The amber one is the Hijrah. The red is the journey to Ta'if."
+
+*[Click on Hijrah]*
+
+"Each journey has the actual route on the map, the waypoints they stopped at, and biographies of key figures like Abu Bakr, Asma, and Bilal."
+
+*[Click on Farewell Pilgrimage]*
+
+"And the Farewell Pilgrimage traces the route from Madinah to Makkah, to Arafat, Muzdalifah, and Mina, with over 100,000 Companions."
+
+---
+
+## [2:30 - 2:50] Tech and extras
+
+"Quick technical notes. This is built with Next.js and Three.js for the 3D. The maps use MapLibre. All the Qur'anic data is verified against the Qur'an.com API. There's a global search with Ctrl+K that searches across everything, and keyboard navigation with arrow keys."
+
+*[Show Ctrl+K search, type "Rahman"]*
+
+"It's hosted for free on Cloudflare Pages and the code is open source on GitHub."
+
+---
+
+## [2:50 - 3:00] Close
+
+*[Navigate back to landing page]*
+
+"Siraj means 'lamp' and the goal is to illuminate the data within the Qur'an and Hadith in a way that hasn't been done before. Jazakum Allahu Khairan for watching."
+
+*[Show URL: siraj-ept.pages.dev]*
