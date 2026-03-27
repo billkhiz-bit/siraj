@@ -205,13 +205,11 @@ export function VerseVisualisation({
       </div>
 
       {/* 3D Canvas */}
-      <div
-        className="relative h-[420px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a]"
-        onClick={() => setPinnedVerse(null)}
-      >
+      <div className="relative h-[420px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a]">
         <Canvas
           camera={{ position: [0, 8, 16], fov: 55 }}
           gl={{ antialias: true, alpha: false }}
+          onPointerMissed={() => setPinnedVerse(null)}
           onCreated={({ gl }) => {
             gl.setClearColor("#0a0a1a");
             gl.toneMapping = THREE.ACESFilmicToneMapping;
