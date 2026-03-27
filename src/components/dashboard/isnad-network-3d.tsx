@@ -238,6 +238,7 @@ function Scene({
 
 export function IsnadNetwork3D() {
   const [hoveredNarrator, setHoveredNarrator] = useState<Narrator | null>(null);
+  const tooltipLocked = useRef(false);
   const [selectedNarrator, setSelectedNarrator] = useState<Narrator | null>(null);
 
   const displayNarrator = selectedNarrator || hoveredNarrator;
@@ -272,13 +273,15 @@ export function IsnadNetwork3D() {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
             }}
           >
-            <Scene hoveredNarrator={displayNarrator} onHover={setHoveredNarrator} onClick={setSelectedNarrator} />
+            <Scene hoveredNarrator={displayNarrator} onHover={(n) => { if (!tooltipLocked.current) setHoveredNarrator(n); }} onClick={setSelectedNarrator} />
           </Canvas>
 
           {/* Hover tooltip (only when no narrator is selected) */}
           {hoveredNarrator && !selectedNarrator && (
             <div
               className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto cursor-pointer rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
+              onMouseEnter={() => { tooltipLocked.current = true; }}
+              onMouseLeave={() => { tooltipLocked.current = false; setHoveredNarrator(null); }}
             >
               <p className="font-mono text-xl font-bold text-foreground">
                 {hoveredNarrator.nameArabic}

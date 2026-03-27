@@ -160,6 +160,7 @@ export function VerseVisualisation({
   surah: Surah;
 }) {
   const [hoveredVerse, setHoveredVerse] = useState<(Verse & { wordCount: number }) | null>(null);
+  const tooltipLocked = useRef(false);
 
   const enrichedVerses = useMemo(
     () =>
@@ -206,12 +207,16 @@ export function VerseVisualisation({
           <Scene
             verses={enrichedVerses}
             hoveredVerse={hoveredVerse}
-            onHover={setHoveredVerse}
+            onHover={(v) => { if (!tooltipLocked.current) setHoveredVerse(v); }}
           />
         </Canvas>
 
         {hoveredVerse && (
-          <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[50%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
+          <div
+            className="pointer-events-auto absolute left-6 bottom-6 max-h-[50%] max-w-lg overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
+            onMouseEnter={() => { tooltipLocked.current = true; }}
+            onMouseLeave={() => { tooltipLocked.current = false; setHoveredVerse(null); }}
+          >
             <p className="text-xs text-muted-foreground">
               Ayah {hoveredVerse.verse_number} · {hoveredVerse.wordCount} words · Juz {hoveredVerse.juz_number} · Page {hoveredVerse.page_number}
             </p>

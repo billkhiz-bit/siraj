@@ -351,6 +351,7 @@ export function Surah3DChart() {
   const [hoveredSurah, setHoveredSurah] = useState<Surah | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const controlsRef = useRef<{ zoomIn: () => void; zoomOut: () => void } | null>(null);
+  const tooltipLocked = useRef(false);
 
   const sortedData = useMemo(() => {
     const data = [...surahs];
@@ -430,7 +431,7 @@ export function Surah3DChart() {
             sortMode={sortMode}
             hoveredSurah={hoveredSurah}
             selectedIndex={selectedIndex}
-            onHover={setHoveredSurah}
+            onHover={(s) => { if (!tooltipLocked.current) setHoveredSurah(s); }}
             onClick={handleClick}
             controlsRef={controlsRef}
           />
@@ -438,7 +439,11 @@ export function Surah3DChart() {
 
         {/* Hover/selection tooltip */}
         {displaySurah && (
-          <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
+          <div
+            className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
+            onMouseEnter={() => { tooltipLocked.current = true; }}
+            onMouseLeave={() => { tooltipLocked.current = false; setHoveredSurah(null); }}
+          >
             <p className="font-mono text-xl font-bold text-foreground">
               {displaySurah.nameArabic}
             </p>

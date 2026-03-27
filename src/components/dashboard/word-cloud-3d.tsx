@@ -165,6 +165,7 @@ interface SearchResult {
 export function WordCloud3D() {
   const [filter, setFilter] = useState<FilterMode>("all");
   const [hoveredWord, setHoveredWord] = useState<QuranicWord | null>(null);
+  const tooltipLocked = useRef(false);
   const [selectedWord, setSelectedWord] = useState<QuranicWord | null>(null);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
@@ -221,11 +222,15 @@ export function WordCloud3D() {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
             }}
           >
-            <Scene filter={filter} hoveredWord={hoveredWord} onHover={setHoveredWord} onClick={handleWordClick} />
+            <Scene filter={filter} hoveredWord={hoveredWord} onHover={(w) => { if (!tooltipLocked.current) setHoveredWord(w); }} onClick={handleWordClick} />
           </Canvas>
 
           {hoveredWord && !selectedWord && (
-            <div className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm">
+            <div
+              className="pointer-events-auto absolute left-6 bottom-6 max-h-[45%] max-w-sm overflow-y-auto rounded-lg border border-border bg-popover/90 px-5 py-4 shadow-xl backdrop-blur-sm"
+              onMouseEnter={() => { tooltipLocked.current = true; }}
+              onMouseLeave={() => { tooltipLocked.current = false; setHoveredWord(null); }}
+            >
               <p className="font-mono text-xl font-bold text-foreground">
                 {hoveredWord.arabic}
               </p>
