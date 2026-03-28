@@ -224,7 +224,7 @@ export function Names3D() {
       </div>
 
       {/* Left panel */}
-      <div className="pointer-events-none absolute left-5 top-12 w-52 space-y-4">
+      <div className="pointer-events-none absolute left-3 top-3 w-40 space-y-4 md:left-5 md:top-12 md:w-52">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-wider text-amber-500/80">
             ☽ The 99 Names of Allah

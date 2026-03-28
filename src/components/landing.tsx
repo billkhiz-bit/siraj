@@ -59,7 +59,7 @@ export function LandingPage() {
 
   return (
     <div
-      className="relative flex h-screen w-full cursor-pointer flex-col items-center justify-center overflow-hidden bg-[#030308]"
+      className="relative flex h-dvh w-full cursor-pointer flex-col items-center justify-center overflow-hidden bg-[#030308]"
       onClick={() => router.push("/dashboard")}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") router.push("/dashboard");
@@ -126,14 +126,15 @@ export function LandingPage() {
           <div className="flex flex-col items-center gap-2">
             <div className="h-8 w-px bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
             <p className="font-mono text-[11px] tracking-wider text-muted-foreground/50">
-              CLICK OR PRESS ENTER
+              <span className="md:hidden">TAP TO EXPLORE</span>
+              <span className="hidden md:inline">CLICK OR PRESS ENTER</span>
             </p>
           </div>
         </div>
 
         {/* Stats bar */}
         <div
-          className={`mt-8 flex gap-8 transition-all duration-700 delay-300 ${
+          className={`mt-8 flex flex-wrap justify-center gap-4 px-4 transition-all duration-700 delay-300 md:gap-8 md:px-0 ${
             phase === "ready" ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}
         >

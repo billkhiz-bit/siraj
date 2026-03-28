@@ -262,9 +262,9 @@ export function IsnadNetwork3D() {
         </p>
       </div>
 
-      <div className="relative flex gap-4">
+      <div className="relative flex flex-col gap-4 md:flex-row">
         {/* 3D Canvas */}
-        <div className={`relative overflow-hidden rounded-xl border border-border bg-[#0a0a1a] ${selectedNarrator ? "h-[560px] w-2/3" : "h-[560px] w-full"}`}>
+        <div className={`relative overflow-hidden rounded-xl border border-border bg-[#0a0a1a] ${selectedNarrator ? "h-[350px] w-full md:h-[560px] md:w-2/3" : "h-[350px] w-full md:h-[560px]"}`}>
           <Canvas
             camera={{ position: [0, 6, 16], fov: 55 }}
             gl={{ antialias: true, alpha: false }}
@@ -314,7 +314,7 @@ export function IsnadNetwork3D() {
 
         {/* Biography panel */}
         {selectedNarrator && (
-          <div className="h-[560px] w-1/3 overflow-y-auto rounded-xl border border-border bg-card p-5">
+          <div className="h-[400px] w-full overflow-y-auto rounded-xl border border-border bg-card p-5 md:h-[560px] md:w-1/3">
             <div className="flex items-start justify-between">
               <div>
                 <p className="font-mono text-2xl font-bold text-foreground" dir="rtl">

@@ -281,7 +281,7 @@ export function JourneysMap() {
       </div>
 
       {/* Left panel: Journey selector + description */}
-      <div className="pointer-events-auto absolute left-5 top-12 w-64 space-y-3">
+      <div className="pointer-events-auto absolute left-3 top-3 w-48 space-y-3 md:left-5 md:top-12 md:w-64">
         <div>
           <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-amber-500/80">
             ◈ Select Journey
@@ -387,7 +387,7 @@ export function JourneysMap() {
       </div>
 
       {/* Right panel: Key figures */}
-      <div className="pointer-events-auto absolute right-5 top-12 w-64 max-h-[calc(100vh-6rem)] overflow-y-auto">
+      <div className="pointer-events-auto absolute right-3 top-3 hidden w-64 max-h-[calc(100vh-6rem)] overflow-y-auto md:right-5 md:top-12 md:block">
         <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500">
           ◉ Key Figures
         </p>

@@ -205,7 +205,7 @@ export function VerseVisualisation({
       </div>
 
       {/* 3D Canvas */}
-      <div className="relative h-[420px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a]">
+      <div className="relative h-[280px] w-full overflow-hidden rounded-xl border border-border bg-[#0a0a1a] md:h-[420px]">
         <Canvas
           camera={{ position: [0, 8, 16], fov: 55 }}
           gl={{ antialias: true, alpha: false }}

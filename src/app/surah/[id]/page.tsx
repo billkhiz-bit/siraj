@@ -30,10 +30,10 @@ export default async function SurahDetailPage({
   const nextSurah = surahNumber < 114 ? surahs[surahNumber] : null;
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       <Sidebar />
       <main className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-6xl px-6 py-8">
+        <div className="mx-auto max-w-6xl px-4 pb-8 pt-16 md:px-6 md:py-8">
           {/* Back link */}
           <Link
             href="/dashboard"
@@ -43,7 +43,7 @@ export default async function SurahDetailPage({
           </Link>
 
           {/* Header */}
-          <div className="mb-6 flex items-start justify-between">
+          <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div>
               <div className="flex items-center gap-3">
                 <h1 className="text-3xl font-bold tracking-tight">

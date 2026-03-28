@@ -3,10 +3,10 @@ import { IsnadNetwork3D } from "@/components/dashboard/isnad-network-3d";
 
 export default function IsnadPage() {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       <Sidebar />
       <main className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-6xl px-6 py-8">
+        <div className="mx-auto max-w-6xl px-4 pb-8 pt-16 md:px-6 md:py-8">
           <div className="mb-6">
             <h1 className="text-3xl font-bold tracking-tight">
               Isnad Network

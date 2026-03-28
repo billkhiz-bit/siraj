@@ -415,7 +415,7 @@ export function Surah3DChart() {
       </div>
 
       {/* 3D Canvas */}
-      <div className="relative h-[560px] w-full overflow-hidden rounded-xl border border-border bg-[#050510]">
+      <div className="relative h-[350px] w-full overflow-hidden rounded-xl border border-border bg-[#050510] md:h-[560px]">
         <Canvas
           shadows
           camera={{ position: [0, 16, 24], fov: 48 }}
