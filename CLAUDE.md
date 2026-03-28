@@ -57,6 +57,16 @@ git add -A && git commit -m "message" && git push origin master
 - Use ﷺ when referencing the Prophet Muhammad
 - No country labels on maps (no-labels tile style)
 
+## Responsive Design
+- Mobile-first Tailwind — base classes for mobile, `md:` prefixes restore desktop layout
+- **Sidebar**: collapsible drawer on mobile (hamburger button), static on `md:`+
+- **3D canvases**: `h-[350px]` on mobile, `h-[560px]` on `md:`+
+- **Side panels** (hadith, prophet, isnad, words): stack below canvas via `flex-col md:flex-row`
+- **Map overlays**: narrower and repositioned on mobile; key figures panel hidden on mobile
+- **Landing stats**: flex-wrap with tighter gaps on mobile
+- **Viewport**: `h-dvh` instead of `h-screen` to handle mobile browser chrome
+- **Breakpoint**: `md:` (768px) is the single breakpoint — below is mobile, above is desktop
+
 ## Key Interaction Patterns
 - **Click-to-pin** on verse bars (click bar to pin ayah card, click empty space to dismiss)
 - **Click-to-explore** on surah bars (navigates to /surah/[id])
@@ -81,3 +91,5 @@ git add -A && git commit -m "message" && git push origin master
 - Use `onPointerMissed` on Canvas to dismiss pinned items on empty click
 - OrbitControls captures arrow keys — add `keyEvents={false}`
 - Billboard component prevents text mirroring (vs manual lookAt which flips)
+- `useEffect` + `setState` triggers ESLint `react-hooks/set-state-in-effect` — close sidebar via `onClick` on Links instead
+- `h-screen` on mobile cuts off content behind browser chrome — use `h-dvh` for dynamic viewport height

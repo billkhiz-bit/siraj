@@ -26,6 +26,16 @@ Siraj illuminates the structure, patterns, and geography of the Qur'an and Hadit
 | **Islamic Journeys** | 10 historical routes from 615-632 CE with waypoints, key figures, and biographies. View all routes simultaneously or individually. |
 | **Names of Allah** | 99 Names arranged in a 3D sphere with Allah at the centre. Filter by Jamal (Beauty), Jalal (Majesty), or Kamal (Perfection). |
 
+## Mobile Responsive
+
+Siraj is fully responsive across phones, tablets, and desktops. On mobile (<768px):
+- Sidebar collapses into a hamburger menu
+- 3D canvases and side panels stack vertically
+- Map overlays resize to fit smaller screens
+- Landing page stats wrap to multiple rows
+
+Desktop layout is unchanged — all responsive behaviour uses the `md:` Tailwind breakpoint.
+
 ## Data Accuracy
 
 All data is sourced from authoritative references:
