@@ -49,26 +49,6 @@ function ParticleDust({ count, radius, colour }: { count: number; radius: number
   );
 }
 
-// --- Scan ring that pulses outward from the base ---
-function ScanRing({ colour }: { colour: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const col = new THREE.Color(colour);
-
-  useFrame((state) => {
-    if (!ref.current) return;
-    const t = (state.clock.elapsedTime * 0.3) % 1;
-    ref.current.scale.setScalar(1 + t * 6);
-    const mat = ref.current.material as THREE.MeshStandardMaterial;
-    mat.opacity = 0.3 * (1 - t);
-  });
-
-  return (
-    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.3, 0]}>
-      <ringGeometry args={[0.5, 0.55, 48]} />
-      <meshStandardMaterial color={col} emissive={col} emissiveIntensity={0.5} transparent opacity={0.3} side={THREE.DoubleSide} />
-    </mesh>
-  );
-}
 
 // --- Accurate Ka'bah ---
 function KaabahModel({ active }: { active: boolean }) {
@@ -202,15 +182,15 @@ function MountUhudModel({ active }: { active: boolean }) {
     return geo;
   }, []);
 
-  // Archers' hill as separate geometry
+  // Archers' hill — small mound, much lower than Uhud (~20m vs 1077m)
   const archersHill = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(2.5, 2.5, 18, 18);
+    const geo = new THREE.PlaneGeometry(2, 2, 15, 15);
     const pos = geo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i); const z = pos.getY(i);
       const d = Math.sqrt(x * x + z * z);
-      let h = Math.max(0, 1 - d / 1) * 1.3;
-      h += Math.sin(x * 6) * 0.05;
+      let h = Math.max(0, 1 - d / 0.8) * 0.8;
+      h += Math.sin(x * 6) * 0.04;
       pos.setZ(i, h);
     }
     geo.computeVertexNormals();
@@ -222,13 +202,15 @@ function MountUhudModel({ active }: { active: boolean }) {
 
   return (
     <group ref={groupRef}>
-      <MountainWithParticles geo={mainRidge} colour="#ef4444" labels={[{ pos: [0, 3.5, 0], text: "Mount Uhud" }, { pos: [-2, 0.5, -2], text: "Martyrs' Cemetery", colour: "#f59e0b" }]} active={active} />
-      {/* Archers' hill — separate */}
-      <group position={[1, 0, -4]}>
-        <MountainWithParticles geo={archersHill} colour="#f59e0b" labels={[{ pos: [0, 1.8, 0], text: "Archers' Hill" }]} active={active} />
+      <MountainWithParticles geo={mainRidge} colour="#ef4444" labels={[{ pos: [0, 3.5, 0], text: "Mount Uhud" }]} active={active} />
+      {/* Archers' hill (Jabal al-Rumah) — ~1km south of Uhud, much smaller */}
+      <group position={[1.5, 0, -7]}>
+        <MountainWithParticles geo={archersHill} colour="#f59e0b" labels={[{ pos: [0, 1.6, 0], text: "Archers' Hill" }, { pos: [0, 1.3, 0], text: "(Jabal al-Rumah)", colour: "#64748b" }]} active={active} />
       </group>
-      {/* Battlefield plane */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, -2.5]}><planeGeometry args={[8, 3]} /><meshStandardMaterial color="#1e293b" emissive="#1e293b" emissiveIntensity={0.08} wireframe /></mesh>
+      {/* Battlefield plain between Uhud and archers' hill */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, -4]}><planeGeometry args={[10, 6]} /><meshStandardMaterial color="#1e293b" emissive="#1e293b" emissiveIntensity={0.06} wireframe /></mesh>
+      <Billboard position={[0, 0.3, -4]}><Text fontSize={0.15} color="#475569">Battlefield</Text></Billboard>
+      <Billboard position={[-2.5, 0.3, -2.5]}><Text fontSize={0.12} color="#ef4444">Martyrs&apos; Cemetery</Text></Billboard>
     </group>
   );
 }
@@ -357,7 +339,6 @@ function Scene({ site }: { site: SacredSite }) {
 
       <SiteModel site={site} active={true} />
       <ParticleDust count={800} radius={8} colour={colour} />
-      <ScanRing colour={colour} />
 
       {/* Crosshair */}
       <group>

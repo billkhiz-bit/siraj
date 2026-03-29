@@ -30,9 +30,10 @@ src/
     map/                  — Revelation Map (MapLibre, clickable surah dots)
     journeys/             — Islamic Journeys (10 routes, key figures, all-journeys view)
     names/                — Names of Allah (3D sphere, Allah at centre, filterable)
+    sites/                — Sacred Sites (6 wireframe 3D models with particle overlays)
     surah/[id]/           — Surah detail (114 pages, Arabic + translation + transliteration)
   components/dashboard/   — All visualisation components
-  lib/data/               — Static datasets (surahs, words, prophets, narrators, names, journeys, hadith)
+  lib/data/               — Static datasets (surahs, words, prophets, narrators, names, journeys, hadith, sacred-sites)
   lib/quran-api.ts        — Qur'an.com API client (parallel fetch for translations + transliteration)
   hooks/                  — Keyboard navigation hook
 ```
