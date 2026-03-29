@@ -15,6 +15,7 @@ const views = [
   { href: "/map", label: "Revelation Map", icon: "🌍" },
   { href: "/journeys", label: "Islamic Journeys", icon: "🕌" },
   { href: "/names", label: "Names of Allah", icon: "✨" },
+  { href: "/sites", label: "Sacred Sites", icon: "🕋" },
 ];
 
 export function Sidebar() {
