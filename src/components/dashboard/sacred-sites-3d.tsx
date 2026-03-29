@@ -329,8 +329,110 @@ const SITE_COLOURS: Record<string, string> = {
   arafat: "#f59e0b",
 };
 
+// Tawaf dots orbiting the Ka'bah
+function TawafDots() {
+  const groupRef = useRef<THREE.Group>(null);
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    groupRef.current.rotation.y = -state.clock.elapsedTime * 0.4; // counter-clockwise
+  });
+
+  const dots = useMemo(() => {
+    const arr: Array<{ angle: number; radius: number; speed: number }> = [];
+    for (let i = 0; i < 24; i++) {
+      arr.push({
+        angle: (i / 24) * Math.PI * 2,
+        radius: 3.2 + seeded(i * 5 + 100) * 1.5,
+        speed: 0.8 + seeded(i * 5 + 200) * 0.4,
+      });
+    }
+    return arr;
+  }, []);
+
+  return (
+    <group ref={groupRef} position={[0, -1.25, 0]}>
+      {dots.map((d, i) => {
+        const x = Math.cos(d.angle) * d.radius;
+        const z = Math.sin(d.angle) * d.radius;
+        return (
+          <mesh key={i} position={[x, 0, z]}>
+            <sphereGeometry args={[0.04, 6, 6]} />
+            <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.8} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+}
+
+// Ground grid for spatial reference
+function GroundGrid() {
+  return <gridHelper args={[20, 40, "#1a1a2e", "#0f0f1a"]} position={[0, -1.35, 0]} />;
+}
+
+// Compass rose (NSEW)
+function Compass() {
+  return (
+    <group position={[0, -1.3, 0]}>
+      {[
+        { dir: "N", pos: [0, 0, -8] as [number, number, number], colour: "#ef4444" },
+        { dir: "S", pos: [0, 0, 8] as [number, number, number], colour: "#64748b" },
+        { dir: "E", pos: [8, 0, 0] as [number, number, number], colour: "#64748b" },
+        { dir: "W", pos: [-8, 0, 0] as [number, number, number], colour: "#64748b" },
+      ].map(({ dir, pos, colour }) => (
+        <Billboard key={dir} position={pos}>
+          <Text fontSize={0.2} color={colour}>{dir}</Text>
+        </Billboard>
+      ))}
+    </group>
+  );
+}
+
+// Camera animation on site change
+function CameraAnimator({ site, controlsRef }: { site: SacredSite; controlsRef: React.MutableRefObject<{ target: THREE.Vector3; object: { position: THREE.Vector3 } } | null> }) {
+  const prevSite = useRef(site.id);
+  const animating = useRef(false);
+  const startPos = useRef(new THREE.Vector3());
+  const targetPos = useRef(new THREE.Vector3());
+  const progress = useRef(0);
+
+  const CAMERA_POSITIONS: Record<string, [number, number, number]> = {
+    kaabah: [4, 3, 6],
+    "masjid-nabawi": [5, 5, 10],
+    "mount-uhud": [0, 6, 12],
+    "cave-hira": [3, 5, 8],
+    "cave-thawr": [3, 4, 9],
+    arafat: [3, 5, 12],
+  };
+
+  useFrame(() => {
+    if (prevSite.current !== site.id) {
+      prevSite.current = site.id;
+      animating.current = true;
+      progress.current = 0;
+      if (controlsRef.current) {
+        startPos.current.copy(controlsRef.current.object.position);
+      }
+      const target = CAMERA_POSITIONS[site.id] || [0, 3, 8];
+      targetPos.current.set(target[0], target[1], target[2]);
+    }
+
+    if (animating.current && controlsRef.current) {
+      progress.current = Math.min(progress.current + 0.02, 1);
+      const t = progress.current;
+      const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // ease in-out
+      controlsRef.current.object.position.lerpVectors(startPos.current, targetPos.current, ease);
+      if (progress.current >= 1) animating.current = false;
+    }
+  });
+
+  return null;
+}
+
 function Scene({ site }: { site: SacredSite }) {
   const colour = SITE_COLOURS[site.id] || "#f59e0b";
+  const controlsRef = useRef(null);
+
   return (
     <>
       <ambientLight intensity={0.1} />
@@ -339,6 +441,11 @@ function Scene({ site }: { site: SacredSite }) {
 
       <SiteModel site={site} active={true} />
       <ParticleDust count={800} radius={8} colour={colour} />
+      {site.id === "kaabah" && <TawafDots />}
+
+      <GroundGrid />
+      <Compass />
+      <CameraAnimator site={site} controlsRef={controlsRef} />
 
       {/* Crosshair */}
       <group>
@@ -347,7 +454,7 @@ function Scene({ site }: { site: SacredSite }) {
       </group>
 
       <Stars radius={60} depth={40} count={2000} factor={3} fade speed={0.2} />
-      <OrbitControls enablePan minDistance={3} maxDistance={20} autoRotate={false} keyEvents={false} />
+      <OrbitControls ref={controlsRef} enablePan minDistance={3} maxDistance={20} autoRotate={false} keyEvents={false} />
       <EffectComposer><Bloom luminanceThreshold={0.08} luminanceSmoothing={0.95} intensity={0.9} mipmapBlur /></EffectComposer>
     </>
   );
@@ -420,6 +527,35 @@ export function SacredSites3D() {
 
         {selectedSite.dimensions && (
           <p className="mt-2 font-mono text-[10px] text-muted-foreground/70">{selectedSite.dimensions}</p>
+        )}
+
+        {/* Elevation profile for mountains */}
+        {selectedSite.elevation && selectedSite.modelType === "mountain" && (
+          <div className="mt-3">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-amber-500/80">Elevation Profile</p>
+            <div className="mt-1.5 flex h-12 items-end gap-px">
+              {Array.from({ length: 30 }, (_, i) => {
+                const x = (i / 29) * 2 - 1;
+                const peak = Math.max(0, 1 - Math.abs(x) * (selectedSite.id === "cave-hira" ? 1.2 : 0.8));
+                const h = (selectedSite.id === "cave-hira" ? peak * peak * peak : peak * peak) * 100;
+                return (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-t-sm"
+                    style={{
+                      height: `${Math.max(h, 2)}%`,
+                      backgroundColor: SITE_COLOURS[selectedSite.id] || "#f59e0b",
+                      opacity: 0.5 + (h / 200),
+                    }}
+                  />
+                );
+              })}
+            </div>
+            <div className="mt-1 flex justify-between font-mono text-[9px] text-muted-foreground/50">
+              <span>0m</span>
+              <span>{selectedSite.elevation}m</span>
+            </div>
+          </div>
         )}
 
         {/* History */}

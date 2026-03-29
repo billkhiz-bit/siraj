@@ -90,6 +90,18 @@ Record your screen with the app open. Speak naturally as if you're showing a fri
 
 ---
 
+## [2:10 - 2:30] Sacred Sites
+
+*[Navigate to Sacred Sites, show Ka'bah wireframe]*
+
+"And this is one of my favourites. Sacred Sites shows wireframe 3D models of six holy sites. This is the Ka'bah, and you can see the Hajar al-Aswad corner, the Hijr Ismail wall, Maqam Ibrahim, and those dots moving around it are showing the tawaf, the circumambulation."
+
+*[Click Mount Uhud — camera flies to new angle]*
+
+"Mount Uhud with the archers' hill separate to the south, exactly where it actually is. Cave of Hira where the first revelation was received. Each site has its full history, Qur'anic references, and you can rotate and zoom to explore them."
+
+---
+
 ## [2:30 - 2:50] Tech and extras
 
 "Quick note on accuracy, because this is the Qur'an and it has to be right. All the surah data, verse text, and translations come from the Qur'an.com API, which uses the Uthmani script and the Sahih International translation. The revelation order follows the Egyptian Standard from Al-Azhar, which is what's printed in virtually every mushaf in the world. The hadith data comes from an open hadith API covering all six canonical collections. And the word search actually queries the Qur'an.com search API live so the ayah results are real."
