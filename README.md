@@ -25,7 +25,7 @@ Siraj illuminates the structure, patterns, and geography of the Qur'an and Hadit
 | **Revelation Map** | Real map showing Makkah (86 Meccan surahs) and Madinah (28 Medinan surahs) with toggleable layers. Click any surah dot to explore. |
 | **Islamic Journeys** | 10 historical routes from 615-632 CE with waypoints, key figures, and biographies. View all routes simultaneously or individually. |
 | **Names of Allah** | 99 Names arranged in a 3D sphere with Allah at the centre. Filter by Jamal (Beauty), Jalal (Majesty), or Kamal (Perfection). |
-| **Sacred Sites** | 6 wireframe 3D models of holy Islamic sites: Ka'bah, Masjid al-Nabawi, Mount Uhud, Cave of Hira, Cave of Thawr, and the Plain of Arafat. Point cloud particle overlays, historical context, and Qur'anic references. |
+| **Sacred Sites** | 5 wireframe 3D models of holy sites: Masjid al-Nabawi, Mount Uhud, Cave of Hira, Cave of Thawr, and the Plain of Arafat. Interactive annotations, particle overlays, elevation profiles, compass, and Qur'anic references. |
 
 ## Mobile Responsive
 
