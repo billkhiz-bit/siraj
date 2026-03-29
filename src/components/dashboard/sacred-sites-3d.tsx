@@ -372,13 +372,27 @@ function AnnotationMarker({ annotation, isActive, onClick }: {
         onPointerOver={() => { document.body.style.cursor = "pointer"; }}
         onPointerOut={() => { document.body.style.cursor = "auto"; }}
       >
-        <sphereGeometry args={[isActive ? 0.12 : 0.08, 10, 10]} />
+        <sphereGeometry args={[isActive ? 0.14 : 0.09, 10, 10]} />
         <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={isActive ? 1.5 : 0.8} />
       </mesh>
-      {/* Vertical line from marker to label */}
-      <Billboard position={[annotation.position[0], annotation.position[1] + 0.3, annotation.position[2]]}>
-        <Text fontSize={isActive ? 0.14 : 0.1} color={isActive ? "#f59e0b" : "#94a3b8"}>{annotation.label}</Text>
+      {/* Label with dark background for readability */}
+      <Billboard position={[annotation.position[0], annotation.position[1] + 0.45, annotation.position[2]]}>
+        <Text
+          fontSize={isActive ? 0.2 : 0.15}
+          color={isActive ? "#ffffff" : "#e2e8f0"}
+          outlineWidth={0.04}
+          outlineColor="#000000"
+          anchorX="center"
+          anchorY="bottom"
+        >
+          {annotation.label}
+        </Text>
       </Billboard>
+      {/* Vertical connecting line */}
+      <mesh position={[annotation.position[0], annotation.position[1] + 0.2, annotation.position[2]]}>
+        <cylinderGeometry args={[0.005, 0.005, 0.3, 4]} />
+        <meshBasicMaterial color="#f59e0b" transparent opacity={0.4} />
+      </mesh>
     </group>
   );
 }
