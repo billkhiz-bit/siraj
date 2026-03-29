@@ -67,7 +67,7 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Ja'far ibn Abi Talib",
+        name: "Ja'far ibn Abi Talib (RA)",
         nameArabic: "جعفر بن أبي طالب",
         role: "Leader of the emigrants",
         description:
@@ -81,18 +81,18 @@ export const journeys: Journey[] = [
           "Christian king who granted asylum to the Muslim refugees. He recognised the truth of their message and refused to hand them over to the Quraysh envoys. The Prophet ﷺ later prayed the funeral prayer (salat al-gha'ib) for him.",
       },
       {
-        name: "Hazrat Ruqayyah bint Muhammad",
+        name: "Ruqayyah bint Muhammad (RA)",
         nameArabic: "رقية بنت محمد",
         role: "Daughter of the Prophet ﷺ",
         description:
-          "Emigrated with her husband Hazrat Uthman ibn Affan. Among the first group to cross to Abyssinia.",
+          "Emigrated with her husband Uthman ibn Affan (RA). Among the first group to cross to Abyssinia.",
       },
       {
-        name: "Hazrat Uthman ibn Affan",
+        name: "Uthman ibn Affan (RA)",
         nameArabic: "عثمان بن عفان",
         role: "Companion, later 3rd Caliph",
         description:
-          "Emigrated with his wife Hazrat Ruqayyah. The Prophet ﷺ said they were the first family to emigrate for the sake of Allah since Ibrahim and Lut.",
+          "Emigrated with his wife Ruqayyah (RA). The Prophet ﷺ said they were the first family to emigrate for the sake of Allah since Ibrahim and Lut.",
       },
     ],
   },
@@ -135,14 +135,14 @@ export const journeys: Journey[] = [
         nameArabic: "عمرو بن العاص",
         role: "Quraysh envoy (later a Muslim)",
         description:
-          "Sent by the Quraysh to convince the Najashi to extradite the Muslims. Failed when Hazrat Ja'far recited Surah Maryam. Later embraced Islam and conquered Egypt.",
+          "Sent by the Quraysh to convince the Najashi to extradite the Muslims. Failed when Ja'far (RA) recited Surah Maryam. Later embraced Islam and conquered Egypt.",
       },
       {
-        name: "Hazrat Umm Salamah",
+        name: "Umm Salamah (RA)",
         nameArabic: "أم سلمة",
         role: "Wife of the Prophet ﷺ",
         description:
-          "Emigrated to Abyssinia with her first husband Hazrat Abu Salamah. Later became one of the Mothers of the Believers. Key narrator of hadith.",
+          "Emigrated to Abyssinia with her first husband Abu Salamah (RA). Later became one of the Mothers of the Believers. Key narrator of hadith.",
       },
     ],
   },
@@ -196,14 +196,14 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Abu Bakr al-Siddiq",
+        name: "Abu Bakr al-Siddiq (RA)",
         nameArabic: "أبو بكر الصديق",
         role: "Companion of the Cave, later 1st Caliph",
         description:
           "Accompanied the Prophet ﷺ on the Hijrah. When they were in the Cave of Thawr and the Quraysh were at the entrance, the Prophet ﷺ said: 'Do not grieve, indeed Allah is with us' (9:40).",
       },
       {
-        name: "Hazrat Asma bint Abi Bakr",
+        name: "Asma bint Abi Bakr (RA)",
         nameArabic: "أسماء بنت أبي بكر",
         role: "Daughter of Abu Bakr",
         description:
@@ -224,7 +224,7 @@ export const journeys: Journey[] = [
           "Pursued the Prophet ﷺ for the bounty. His horse's legs sank into the sand three times. He asked for a pledge of safety and later embraced Islam.",
       },
       {
-        name: "Hazrat Bilal ibn Rabah",
+        name: "Bilal ibn Rabah (RA)",
         nameArabic: "بلال بن رباح",
         role: "First mu'adhdhin (caller to prayer)",
         description:
@@ -260,7 +260,7 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Zayd ibn Harithah",
+        name: "Zayd ibn Harithah (RA)",
         nameArabic: "زيد بن حارثة",
         role: "Adopted son of the Prophet ﷺ",
         description:
@@ -310,7 +310,7 @@ export const journeys: Journey[] = [
           "Guided the Prophet ﷺ throughout the Night Journey and the ascension through the seven heavens.",
       },
       {
-        name: "Hazrat Abu Bakr al-Siddiq",
+        name: "Abu Bakr al-Siddiq (RA)",
         nameArabic: "أبو بكر الصديق",
         role: "Earned the title 'al-Siddiq' (the Truthful)",
         description:
@@ -347,21 +347,21 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Hamzah ibn Abd al-Muttalib",
+        name: "Hamzah ibn Abd al-Muttalib (RA)",
         nameArabic: "حمزة بن عبد المطلب",
         role: "Uncle of the Prophet ﷺ, 'Lion of Allah'",
         description:
           "One of the bravest fighters at Badr. He was the Prophet's ﷺ paternal uncle and one of the earliest converts.",
       },
       {
-        name: "Hazrat Ali ibn Abi Talib",
+        name: "Ali ibn Abi Talib (RA)",
         nameArabic: "علي بن أبي طالب",
         role: "Cousin of the Prophet ﷺ, later 4th Caliph",
         description:
           "Fought with great distinction at Badr as a young man. One of the three Muslims who fought in single combat at the start of the battle.",
       },
       {
-        name: "Hazrat Bilal ibn Rabah",
+        name: "Bilal ibn Rabah (RA)",
         nameArabic: "بلال بن رباح",
         role: "Companion, first mu'adhdhin",
         description:
@@ -398,7 +398,7 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Uthman ibn Affan",
+        name: "Uthman ibn Affan (RA)",
         nameArabic: "عثمان بن عفان",
         role: "Envoy to Quraysh, later 3rd Caliph",
         description:
@@ -449,21 +449,21 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Abu Sufyan ibn Harb",
+        name: "Abu Sufyan ibn Harb (RA)",
         nameArabic: "أبو سفيان بن حرب",
         role: "Quraysh leader, accepted Islam",
         description:
           "Long-time opponent of the Muslims who accepted Islam on the eve of the conquest. The Prophet ﷺ declared: 'Whoever enters Abu Sufyan's house is safe.'",
       },
       {
-        name: "Hazrat Khalid ibn al-Walid",
+        name: "Khalid ibn al-Walid (RA)",
         nameArabic: "خالد بن الوليد",
         role: "Military commander, 'Sword of Allah'",
         description:
           "Had recently embraced Islam and commanded one of the four divisions that entered Makkah. Later became one of history's greatest military commanders.",
       },
       {
-        name: "Hazrat Hind bint Utbah",
+        name: "Hind bint Utbah (RA)",
         nameArabic: "هند بنت عتبة",
         role: "Wife of Abu Sufyan, accepted Islam",
         description:
@@ -507,21 +507,21 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Abu Bakr al-Siddiq",
+        name: "Abu Bakr al-Siddiq (RA)",
         nameArabic: "أبو بكر الصديق",
         role: "Donated all his wealth for the expedition",
         description:
           "Gave everything he owned to fund the Tabuk expedition. When asked what he left for his family, he replied: 'Allah and His Messenger.'",
       },
       {
-        name: "Hazrat Uthman ibn Affan",
+        name: "Uthman ibn Affan (RA)",
         nameArabic: "عثمان بن عفان",
         role: "Major financial sponsor",
         description:
           "Equipped a third of the entire army (around 10,000 men) from his own wealth. The Prophet ﷺ said: 'Nothing Uthman does after today will harm him.'",
       },
       {
-        name: "Hazrat Ka'b ibn Malik",
+        name: "Ka'b ibn Malik (RA)",
         nameArabic: "كعب بن مالك",
         role: "Companion who stayed behind",
         description:
@@ -579,21 +579,21 @@ export const journeys: Journey[] = [
     ],
     keyFigures: [
       {
-        name: "Hazrat Fatimah al-Zahra",
+        name: "Fatimah al-Zahra (RA)",
         nameArabic: "فاطمة الزهراء",
         role: "Daughter of the Prophet ﷺ",
         description:
           "Accompanied her father on the Farewell Pilgrimage. The Prophet ﷺ confided to her that he would pass away soon. She wept, then smiled when he told her she would be the first of his family to join him.",
       },
       {
-        name: "Hazrat Ali ibn Abi Talib",
+        name: "Ali ibn Abi Talib (RA)",
         nameArabic: "علي بن أبي طالب",
         role: "Cousin and son-in-law of the Prophet ﷺ",
         description:
           "Arrived from Yemen with a separate group to join the pilgrimage. The Prophet ﷺ shared his sacrificial animals with Ali.",
       },
       {
-        name: "Hazrat Jabir ibn Abdullah",
+        name: "Jabir ibn Abdullah (RA)",
         nameArabic: "جابر بن عبد الله",
         role: "Narrator of the Farewell Pilgrimage hadith",
         description:
