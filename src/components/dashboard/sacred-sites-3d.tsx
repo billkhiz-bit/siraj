@@ -50,45 +50,6 @@ function ParticleDust({ count, radius, colour }: { count: number; radius: number
 }
 
 
-// --- Accurate Ka'bah ---
-function KaabahModel({ active }: { active: boolean }) {
-  const groupRef = useRef<THREE.Group>(null);
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = state.clock.elapsedTime * 0.12;
-  });
-  const e = active ? 0.6 : 0.3;
-
-  return (
-    <group ref={groupRef}>
-      <mesh><boxGeometry args={[2.62, 2.57, 2.2]} /><meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={e} wireframe /></mesh>
-      {/* Kiswah hizam band */}
-      <mesh position={[0, 0.5, 0]}><boxGeometry args={[2.64, 0.12, 2.22]} /><meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.9} wireframe /></mesh>
-      {/* Door — NE wall, raised */}
-      <mesh position={[1.32, -0.35, -0.15]}><boxGeometry args={[0.04, 0.7, 0.34]} /><meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.9} /></mesh>
-      <mesh position={[1.33, -0.35, -0.15]}><boxGeometry args={[0.02, 0.75, 0.38]} /><meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.5} wireframe /></mesh>
-      {/* Hajar al-Aswad + silver frame */}
-      <mesh position={[1.31, -0.85, 1.1]}><sphereGeometry args={[0.1, 12, 12]} /><meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={1.2} /></mesh>
-      <mesh position={[1.31, -0.85, 1.1]}><torusGeometry args={[0.14, 0.02, 8, 16]} /><meshStandardMaterial color="#c0c0c0" emissive="#c0c0c0" emissiveIntensity={0.6} wireframe /></mesh>
-      {/* Hijr Ismail curved wall */}
-      <mesh position={[0, -1.05, 1.55]} rotation={[Math.PI / 2, 0, 0]}>
-        <tubeGeometry args={[new THREE.CatmullRomCurve3(Array.from({ length: 20 }, (_, i) => { const a = (i / 19) * Math.PI; return new THREE.Vector3(Math.cos(a) * 1.5, 0, Math.sin(a) * 0.5); })), 20, 0.06, 6, false]} />
-        <meshStandardMaterial color="#a78bfa" emissive="#a78bfa" emissiveIntensity={0.5} wireframe />
-      </mesh>
-      {/* Mizab (rain spout) */}
-      <mesh position={[0, 1.15, 1.12]} rotation={[0.3, 0, 0]}><boxGeometry args={[0.15, 0.06, 0.5]} /><meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.8} /></mesh>
-      {/* Maqam Ibrahim */}
-      <mesh position={[2.2, -1.15, -0.15]}><boxGeometry args={[0.25, 0.3, 0.25]} /><meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.4} wireframe /></mesh>
-      {/* Mataf rings */}
-      {[3, 4, 5, 6.5].map((r, i) => (<mesh key={i} rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.3, 0]}><ringGeometry args={[r - 0.02, r, 64]} /><meshStandardMaterial color="#1e293b" emissive="#1e293b" emissiveIntensity={0.15} wireframe /></mesh>))}
-      {/* Labels */}
-      <Billboard position={[2.2, -0.65, -0.15]}><Text fontSize={0.1} color="#f59e0b">Maqam Ibrahim</Text></Billboard>
-      {[{ pos: [1.5, -1.6, 1.3] as const, l: "Hajar al-Aswad" }, { pos: [-1.5, -1.6, 1.3] as const, l: "Rukn al-Iraqi" }, { pos: [-1.5, -1.6, -1.3] as const, l: "Rukn al-Shami" }, { pos: [1.5, -1.6, -1.3] as const, l: "Rukn al-Yamani" }].map(({ pos, l }) => (
-        <Billboard key={l} position={pos as unknown as [number, number, number]}><Text fontSize={0.08} color="#475569">{l}</Text></Billboard>
-      ))}
-    </group>
-  );
-}
 
 // --- Masjid al-Nabawi ---
 function MasjidNabawiModel({ active }: { active: boolean }) {
@@ -203,14 +164,14 @@ function MountUhudModel({ active }: { active: boolean }) {
   return (
     <group ref={groupRef}>
       <MountainWithParticles geo={mainRidge} colour="#ef4444" labels={[{ pos: [0, 3.5, 0], text: "Mount Uhud" }]} active={active} />
-      {/* Archers' hill (Jabal al-Rumah) — ~1km south of Uhud, much smaller */}
-      <group position={[1.5, 0, -7]}>
+      {/* Archers' hill (Jabal al-Rumah) — ~1km south of Uhud, clearly separate */}
+      <group position={[2, 0, -9]}>
         <MountainWithParticles geo={archersHill} colour="#f59e0b" labels={[{ pos: [0, 1.6, 0], text: "Archers' Hill" }, { pos: [0, 1.3, 0], text: "(Jabal al-Rumah)", colour: "#64748b" }]} active={active} />
       </group>
       {/* Battlefield plain between Uhud and archers' hill */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, -4]}><planeGeometry args={[10, 6]} /><meshStandardMaterial color="#1e293b" emissive="#1e293b" emissiveIntensity={0.06} wireframe /></mesh>
-      <Billboard position={[0, 0.3, -4]}><Text fontSize={0.15} color="#475569">Battlefield</Text></Billboard>
-      <Billboard position={[-2.5, 0.3, -2.5]}><Text fontSize={0.12} color="#ef4444">Martyrs&apos; Cemetery</Text></Billboard>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, -5]}><planeGeometry args={[12, 8]} /><meshStandardMaterial color="#1e293b" emissive="#1e293b" emissiveIntensity={0.06} wireframe /></mesh>
+      <Billboard position={[0, 0.3, -5]}><Text fontSize={0.15} color="#475569">Battlefield</Text></Billboard>
+      <Billboard position={[-3, 0.3, -2.5]}><Text fontSize={0.12} color="#ef4444">Martyrs&apos; Cemetery</Text></Billboard>
     </group>
   );
 }
@@ -223,7 +184,7 @@ function CaveHiraModel({ active }: { active: boolean }) {
       const x = pos.getX(i); const z = pos.getY(i);
       const d = Math.sqrt(x * x + z * z);
       const peak = Math.max(0, 1 - d / 2.5);
-      let h = peak * peak * peak * 5.5;
+      let h = peak * peak * peak * 3.5;
       h += Math.sin(x * 8 + z * 6) * 0.12 * peak + Math.cos(x * 12 - z * 9) * 0.08 * peak;
       h += Math.max(0, 0.3 - d / 8) * Math.sin(x * 2 + z * 3) * 0.5;
       pos.setZ(i, Math.max(h, 0));
@@ -285,7 +246,7 @@ function ArafatModel({ active }: { active: boolean }) {
       let h = Math.sin(x * 0.3) * Math.cos(z * 0.4) * 0.08 + Math.sin(x * 1.5 + z * 1.2) * 0.03;
       const d = Math.sqrt((x - 0.5) * (x - 0.5) + z * z);
       const hill = Math.max(0, 1 - d / 1.2);
-      h += hill * hill * 2.2 + hill * Math.sin(x * 10 + z * 8) * 0.08;
+      h += hill * hill * 1.4 + hill * Math.sin(x * 10 + z * 8) * 0.06;
       pos.setZ(i, Math.max(h, 0));
     }
     geo.computeVertexNormals();
@@ -310,7 +271,6 @@ function ArafatModel({ active }: { active: boolean }) {
 
 function SiteModel({ site, active }: { site: SacredSite; active: boolean }) {
   switch (site.id) {
-    case "kaabah": return <KaabahModel active={active} />;
     case "masjid-nabawi": return <MasjidNabawiModel active={active} />;
     case "mount-uhud": return <MountUhudModel active={active} />;
     case "cave-hira": return <CaveHiraModel active={active} />;
@@ -321,49 +281,12 @@ function SiteModel({ site, active }: { site: SacredSite; active: boolean }) {
 }
 
 const SITE_COLOURS: Record<string, string> = {
-  kaabah: "#f59e0b",
   "masjid-nabawi": "#34d399",
   "mount-uhud": "#ef4444",
   "cave-hira": "#22d3ee",
   "cave-thawr": "#a78bfa",
   arafat: "#f59e0b",
 };
-
-// Tawaf dots orbiting the Ka'bah
-function TawafDots() {
-  const groupRef = useRef<THREE.Group>(null);
-  useFrame((state) => {
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = -state.clock.elapsedTime * 0.4; // counter-clockwise
-  });
-
-  const dots = useMemo(() => {
-    const arr: Array<{ angle: number; radius: number; speed: number }> = [];
-    for (let i = 0; i < 24; i++) {
-      arr.push({
-        angle: (i / 24) * Math.PI * 2,
-        radius: 3.2 + seeded(i * 5 + 100) * 1.5,
-        speed: 0.8 + seeded(i * 5 + 200) * 0.4,
-      });
-    }
-    return arr;
-  }, []);
-
-  return (
-    <group ref={groupRef} position={[0, -1.25, 0]}>
-      {dots.map((d, i) => {
-        const x = Math.cos(d.angle) * d.radius;
-        const z = Math.sin(d.angle) * d.radius;
-        return (
-          <mesh key={i} position={[x, 0, z]}>
-            <sphereGeometry args={[0.04, 6, 6]} />
-            <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.8} />
-          </mesh>
-        );
-      })}
-    </group>
-  );
-}
 
 // Ground grid for spatial reference
 function GroundGrid() {
@@ -429,7 +352,42 @@ function CameraAnimator({ site, controlsRef }: { site: SacredSite; controlsRef: 
   return null;
 }
 
-function Scene({ site }: { site: SacredSite }) {
+function AnnotationMarker({ annotation, isActive, onClick }: {
+  annotation: { position: [number, number, number]; label: string };
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    meshRef.current.position.y = annotation.position[1] + Math.sin(state.clock.elapsedTime * 2) * 0.06;
+  });
+
+  return (
+    <group>
+      <mesh
+        ref={meshRef}
+        position={annotation.position}
+        onClick={(e) => { e.stopPropagation(); onClick(); }}
+        onPointerOver={() => { document.body.style.cursor = "pointer"; }}
+        onPointerOut={() => { document.body.style.cursor = "auto"; }}
+      >
+        <sphereGeometry args={[isActive ? 0.12 : 0.08, 10, 10]} />
+        <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={isActive ? 1.5 : 0.8} />
+      </mesh>
+      {/* Vertical line from marker to label */}
+      <Billboard position={[annotation.position[0], annotation.position[1] + 0.3, annotation.position[2]]}>
+        <Text fontSize={isActive ? 0.14 : 0.1} color={isActive ? "#f59e0b" : "#94a3b8"}>{annotation.label}</Text>
+      </Billboard>
+    </group>
+  );
+}
+
+function Scene({ site, selectedAnnotation, onAnnotationClick }: {
+  site: SacredSite;
+  selectedAnnotation: number;
+  onAnnotationClick: (i: number) => void;
+}) {
   const colour = SITE_COLOURS[site.id] || "#f59e0b";
   const controlsRef = useRef(null);
 
@@ -441,7 +399,16 @@ function Scene({ site }: { site: SacredSite }) {
 
       <SiteModel site={site} active={true} />
       <ParticleDust count={800} radius={8} colour={colour} />
-      {site.id === "kaabah" && <TawafDots />}
+
+      {/* Interactive annotation markers */}
+      {(site.annotations || []).map((ann, i) => (
+        <AnnotationMarker
+          key={ann.label}
+          annotation={ann}
+          isActive={selectedAnnotation === i}
+          onClick={() => onAnnotationClick(i)}
+        />
+      ))}
 
       <GroundGrid />
       <Compass />
@@ -463,6 +430,7 @@ function Scene({ site }: { site: SacredSite }) {
 // --- Main component: split layout, no overlapping ---
 export function SacredSites3D() {
   const [selectedSite, setSelectedSite] = useState<SacredSite>(sacredSites[0]);
+  const [selectedAnnotation, setSelectedAnnotation] = useState(-1);
 
   return (
     <div className="flex h-[calc(100vh-2rem)] w-full gap-3 overflow-hidden rounded-xl">
@@ -477,7 +445,7 @@ export function SacredSites3D() {
             gl.toneMappingExposure = 1.4;
           }}
         >
-          <Scene site={selectedSite} />
+          <Scene site={selectedSite} selectedAnnotation={selectedAnnotation} onAnnotationClick={(i) => setSelectedAnnotation(i === selectedAnnotation ? -1 : i)} />
         </Canvas>
 
         {/* HUD overlays on canvas */}
@@ -505,7 +473,7 @@ export function SacredSites3D() {
           {sacredSites.map((site) => (
             <button
               key={site.id}
-              onClick={() => setSelectedSite(site)}
+              onClick={() => { setSelectedSite(site); setSelectedAnnotation(-1); }}
               className={`rounded px-2 py-1.5 text-left font-mono text-[10px] transition-colors ${
                 selectedSite.id === site.id
                   ? "bg-white/10 font-bold text-foreground"
@@ -576,6 +544,40 @@ export function SacredSites3D() {
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Selected annotation detail */}
+        {selectedAnnotation >= 0 && selectedSite.annotations?.[selectedAnnotation] && (
+          <div className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
+            <p className="font-mono text-[10px] font-bold text-amber-500">
+              {selectedSite.annotations[selectedAnnotation].label}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              {selectedSite.annotations[selectedAnnotation].detail}
+            </p>
+          </div>
+        )}
+
+        {/* Interactive points */}
+        {selectedSite.annotations && selectedSite.annotations.length > 0 && (
+          <div className="mt-4">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-amber-500/80">Interactive Points</p>
+            <div className="mt-2 flex flex-wrap gap-1">
+              {selectedSite.annotations.map((ann, i) => (
+                <button
+                  key={ann.label}
+                  onClick={() => setSelectedAnnotation(i === selectedAnnotation ? -1 : i)}
+                  className={`rounded px-2 py-1 font-mono text-[10px] transition-colors ${
+                    selectedAnnotation === i
+                      ? "bg-amber-500/20 text-amber-500"
+                      : "bg-white/5 text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {ann.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 

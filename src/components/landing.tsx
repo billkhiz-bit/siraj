@@ -159,7 +159,7 @@ export function LandingPage() {
             <p className="font-mono text-[10px] text-muted-foreground/50">JOURNEYS</p>
           </div>
           <div className="text-center">
-            <p className="font-mono text-lg font-bold text-foreground">6</p>
+            <p className="font-mono text-lg font-bold text-foreground">5</p>
             <p className="font-mono text-[10px] text-muted-foreground/50">SACRED SITES</p>
           </div>
         </div>

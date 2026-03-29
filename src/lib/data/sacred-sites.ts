@@ -1,3 +1,9 @@
+export interface Annotation {
+  position: [number, number, number];
+  label: string;
+  detail: string;
+}
+
 export interface SacredSite {
   id: string;
   name: string;
@@ -12,33 +18,10 @@ export interface SacredSite {
   keyEvents: string[];
   connectedJourneys: string[]; // journey IDs from journeys.ts
   modelType: "structure" | "mountain" | "plain";
+  annotations?: Annotation[];
 }
 
 export const sacredSites: SacredSite[] = [
-  {
-    id: "kaabah",
-    name: "The Ka'bah",
-    nameArabic: "الكعبة المشرفة",
-    lat: 21.4225,
-    lon: 39.8262,
-    description: "The House of Allah, the qiblah of all Muslims",
-    dimensions: "13.1m long, 11.03m wide, 12.86m tall",
-    history: "Originally built by Ibrahim and Isma'il as the first house of worship dedicated to the One God. The Qur'an states: 'The first House established for mankind was that at Bakkah (Makkah), blessed and a guidance for the worlds' (3:96). Before Islam, the Quraysh filled it with 360 idols. When the Prophet ﷺ conquered Makkah in 630 CE, he entered the Ka'bah and removed every idol, reciting: 'Truth has come and falsehood has vanished. Indeed, falsehood is bound to vanish' (17:81). The Ka'bah is draped in the Kiswah (black cloth embroidered with gold Qur'anic verses) and contains the Hajar al-Aswad (Black Stone) at its eastern corner.",
-    quranicReferences: [
-      "3:96 — First house established for mankind",
-      "2:127 — Ibrahim and Isma'il raising its foundations",
-      "2:144 — Appointed as the qiblah",
-      "22:26 — Allah showed Ibrahim the site of the House",
-    ],
-    keyEvents: [
-      "Built by Ibrahim and Isma'il",
-      "Quraysh rebuild (605 CE) — the Prophet ﷺ placed the Black Stone",
-      "Conquest of Makkah (630 CE) — idols removed",
-      "Direction of prayer (qiblah) for 1.8 billion Muslims",
-    ],
-    connectedJourneys: ["hijrah", "fath-makkah", "farewell"],
-    modelType: "structure",
-  },
   {
     id: "masjid-nabawi",
     name: "Masjid al-Nabawi (Prophet's Mosque)",
@@ -60,6 +43,11 @@ export const sacredSites: SacredSite[] = [
     ],
     connectedJourneys: ["hijrah", "badr", "farewell"],
     modelType: "structure",
+    annotations: [
+      { position: [2, 2.3, 0.5], label: "Green Dome", detail: "Built in 1279 CE over the burial chamber of the Prophet ﷺ, Abu Bakr, and Umar. Painted green in 1837." },
+      { position: [2.2, -0.15, 0], label: "Al-Rawdah", detail: "The Prophet ﷺ said: 'Between my house and my pulpit is a garden from the gardens of Paradise.'" },
+      { position: [4, 4.2, 2.5], label: "Minarets", detail: "The current mosque has 10 minarets, each 105m tall, making them among the tallest in the world." },
+    ],
   },
   {
     id: "mount-uhud",
@@ -84,6 +72,11 @@ export const sacredSites: SacredSite[] = [
     ],
     connectedJourneys: [],
     modelType: "mountain",
+    annotations: [
+      { position: [0, 3.5, 0], label: "Summit Ridge", detail: "Uhud's distinctive flat-topped ridge runs 7km east to west. The Prophet ﷺ said: 'Uhud is a mountain that loves us and we love it.'" },
+      { position: [1.5, 1, -7], label: "Archers' Hill", detail: "50 archers were posted here by the Prophet ﷺ with orders not to leave. When they left to collect spoils, Khalid ibn al-Walid's cavalry flanked the Muslims." },
+      { position: [-2.5, 0.5, -2.5], label: "Martyrs' Cemetery", detail: "70 martyrs are buried here including Hamzah ibn Abd al-Muttalib, the 'Lion of Allah' and uncle of the Prophet ﷺ." },
+    ],
   },
   {
     id: "cave-hira",
@@ -107,6 +100,10 @@ export const sacredSites: SacredSite[] = [
     ],
     connectedJourneys: [],
     modelType: "mountain",
+    annotations: [
+      { position: [0.3, 3.5, 0.2], label: "Cave of Hira", detail: "A small cave (3.7m x 1.6m) near the summit. The Prophet ﷺ retreated here for contemplation before prophethood. Jibril appeared here with the first revelation." },
+      { position: [0, 0.5, 2.5], label: "Ascent Path", detail: "A steep climb of about 600m from the base. The Prophet ﷺ would bring provisions and spend days in meditation." },
+    ],
   },
   {
     id: "cave-thawr",
@@ -129,6 +126,10 @@ export const sacredSites: SacredSite[] = [
     ],
     connectedJourneys: ["hijrah"],
     modelType: "mountain",
+    annotations: [
+      { position: [0.8, 2.3, 1], label: "Cave Entrance", detail: "The cave is large enough for two people. A spider spun its web over the entrance and a dove nested there, concealing the Prophet ﷺ and Abu Bakr from Quraysh trackers." },
+      { position: [0, 2.8, -0.5], label: "Summit", detail: "Jabal Thawr is 748m high. Unlike Jabal al-Nur, the cave is not at the summit but partway up the mountain." },
+    ],
   },
   {
     id: "arafat",
@@ -152,5 +153,10 @@ export const sacredSites: SacredSite[] = [
     ],
     connectedJourneys: ["farewell"],
     modelType: "plain",
+    annotations: [
+      { position: [0.5, 2.8, 0], label: "Jabal al-Rahmah", detail: "Mount of Mercy. The Prophet ﷺ stood here to deliver the Farewell Sermon to over 100,000 Companions, declaring the equality of all humanity." },
+      { position: [4, 0.3, 3], label: "Standing Area", detail: "Standing at Arafat (wuquf) on 9th Dhul Hijjah is the essential pillar of Hajj. The Prophet ﷺ said: 'Hajj is Arafat.'" },
+      { position: [-3, 0.3, -3], label: "Last Revelation", detail: "Here the final verse was revealed: 'Today I have perfected your religion for you, completed My favour upon you, and chosen Islam as your way' (5:3)." },
+    ],
   },
 ];
