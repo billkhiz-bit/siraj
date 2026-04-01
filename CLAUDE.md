@@ -56,6 +56,7 @@ git add -A && git commit -m "message" && git push origin master
 - **Narrators**: 37 across 4 generations with biographies
 - Always verify against Qur'an.com API before changing surah/verse data
 - Use ﷺ when referencing the Prophet Muhammad
+- Use (RA) suffix for all Sahaba (companions) — e.g. Abu Bakr (RA), Aisha (RA)
 - No country labels on maps (no-labels tile style)
 
 ## Responsive Design
@@ -82,6 +83,11 @@ git add -A && git commit -m "message" && git push origin master
 - Bloom post-processing on all 3D views
 - Project Backbone-inspired overlay panels for map views
 - Geist Sans for UI, Geist Mono for data
+
+## Cloudflare Pages
+- `trailingSlash: true` in next.config.ts is **required** — without it, Next.js exports both `page.html` and `page/index.html`, causing routing ambiguity and mass 4xx errors on Cloudflare
+- `public/_headers` sets cache rules: `_next/static/*` gets 1-year immutable cache, HTML gets `must-revalidate`
+- Security headers (X-Content-Type-Options, X-Frame-Options, Referrer-Policy) applied via `_headers` file
 
 ## Gotchas
 - Qur'an.com API: adding `words=true` drops `translations` from response — must use two parallel fetches

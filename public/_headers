@@ -1,0 +1,23 @@
+# Static assets — immutable hashed filenames, cache aggressively
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images and icons
+/*.ico
+  Cache-Control: public, max-age=86400
+/*.svg
+  Cache-Control: public, max-age=86400
+
+# HTML pages — short cache with revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Default for all other paths
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
